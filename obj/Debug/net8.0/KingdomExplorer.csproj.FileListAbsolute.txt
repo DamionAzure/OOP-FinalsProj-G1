@@ -1,0 +1,14 @@
+C:\Users\Damion\Desktop\KingdomExplorerProject\bin\Debug\net8.0\KingdomExplorer.exe
+C:\Users\Damion\Desktop\KingdomExplorerProject\bin\Debug\net8.0\KingdomExplorer.deps.json
+C:\Users\Damion\Desktop\KingdomExplorerProject\bin\Debug\net8.0\KingdomExplorer.runtimeconfig.json
+C:\Users\Damion\Desktop\KingdomExplorerProject\bin\Debug\net8.0\KingdomExplorer.dll
+C:\Users\Damion\Desktop\KingdomExplorerProject\bin\Debug\net8.0\KingdomExplorer.pdb
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.AssemblyInfoInputs.cache
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.AssemblyInfo.cs
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.csproj.CoreCompileInputs.cache
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.dll
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\refint\KingdomExplorer.dll
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.pdb
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\KingdomExplorer.genruntimeconfig.cache
+C:\Users\Damion\Desktop\KingdomExplorerProject\obj\Debug\net8.0\ref\KingdomExplorer.dll
