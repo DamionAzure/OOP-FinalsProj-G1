@@ -12,6 +12,13 @@
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
   </ItemGroup>
 
+  <!-- Team 2's data file: copied next to the program so it can be edited without touching C# -->
+  <ItemGroup>
+    <None Update="Data/organisms.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <!-- Optional Terminal.Gui interface. Off by default so the normal build stays simple.
        To enable it, set the EnableTui property to true and pass the tui flag (see README). -->
   <PropertyGroup Condition="'$(EnableTui)' == 'true'">

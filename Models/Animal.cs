@@ -8,8 +8,9 @@ public abstract class Animal : Organism
     public override Kingdom Kingdom => Kingdom.Animal;
 
     protected Animal(string id, string commonName, string scientificName,
-                     string habitat, string distinguishingTrait, string diet)
-        : base(id, commonName, scientificName, habitat, distinguishingTrait)
+                     string habitat, string distinguishingTrait, string diet,
+                     IEnumerable<string>? sources = null)
+        : base(id, commonName, scientificName, habitat, distinguishingTrait, sources)
     {
         Diet = Require(diet, nameof(diet));
     }

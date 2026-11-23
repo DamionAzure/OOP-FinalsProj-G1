@@ -7,9 +7,10 @@ public sealed class FloweringPlant : Plant
     public override string Group => "Flowering Plant";
 
     public FloweringPlant(string id, string commonName, string scientificName, string habitat,
-                          string distinguishingTrait, string flowerColor)
+                          string distinguishingTrait, string flowerColor,
+                          IEnumerable<string>? sources = null)
         : base(id, commonName, scientificName, habitat, distinguishingTrait,
-               "Seeds produced in flowers")
+               "Seeds produced in flowers", sources)
     {
         FlowerColor = Require(flowerColor, nameof(flowerColor));
     }

@@ -7,8 +7,9 @@ public sealed class Fern : Plant
     public override string Group => "Fern";
 
     public Fern(string id, string commonName, string scientificName, string habitat,
-                string distinguishingTrait, string frondDescription)
-        : base(id, commonName, scientificName, habitat, distinguishingTrait, "Spores")
+                string distinguishingTrait, string frondDescription,
+                IEnumerable<string>? sources = null)
+        : base(id, commonName, scientificName, habitat, distinguishingTrait, "Spores", sources)
     {
         FrondDescription = Require(frondDescription, nameof(frondDescription));
     }

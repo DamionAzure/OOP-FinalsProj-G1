@@ -7,8 +7,9 @@ public sealed class Mammal : Animal
     public override string Group => "Mammal";
 
     public Mammal(string id, string commonName, string scientificName, string habitat,
-                  string distinguishingTrait, string diet, string bodyCovering)
-        : base(id, commonName, scientificName, habitat, distinguishingTrait, diet)
+                  string distinguishingTrait, string diet, string bodyCovering,
+                  IEnumerable<string>? sources = null)
+        : base(id, commonName, scientificName, habitat, distinguishingTrait, diet, sources)
     {
         BodyCovering = Require(bodyCovering, nameof(bodyCovering));
     }

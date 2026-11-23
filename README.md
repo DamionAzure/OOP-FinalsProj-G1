@@ -28,7 +28,8 @@ Empty input and invalid options show a message and return to the menu.
 Models/    Organism (abstract) -> Animal / Plant (abstract) -> Mammal, Bird / FloweringPlant, Fern
 Catalog/   OrganismCatalog (private list, add/list/search/filter), ISearchStrategy, ISuggestionProvider,
            NameSearchStrategy (plain), FuzzySearchStrategy + FuzzySuggestionProvider (FuzzySharp)
-Data/      SeedData (12 starter records: 6 animals, 6 plants)
+Data/      organisms.csv (the data), CsvOrganismRepository + OrganismFactory (loading), SeedData (built-in fallback)
+Tools/     UmlGenerator (prints the class diagram and inheritance table from the real code)
 UI/        IExplorerView, ConsoleExplorerView, ExplorerController
 Program.cs Composition root (chooses the concrete implementations)
 ```
@@ -38,6 +39,19 @@ Program.cs Composition root (chooses the concrete implementations)
 - **Abstraction:** `Organism` (shared data + abstract `DescribeKeyTrait()`, `Kingdom`, `Group`).
 - **Inheritance:** `Animal`/`Plant` derive from `Organism`; `Mammal`/`Bird` derive from `Animal`; `FloweringPlant`/`Fern` derive from `Plant`.
 - **Polymorphism:** the catalog stores `Organism` references; `ConsoleExplorerView` and `Organism.GetDetails()` call `DescribeKeyTrait()`, and the runtime picks the subtype's override.
+
+## Adding or editing organisms (Team 2)
+Records live in `Data/organisms.csv`, one row per organism, editable in Excel or Google Sheets. No C# needed.
+Each row has a `sources` column (separate several with `|`). The app lists any skipped row, with its row number and reason,
+when it starts. Full instructions: `Data/HOW_TO_ADD_DATA.md`. To try another file: `dotnet run -- --data path\to\file.csv`.
+
+## Diagrams for the report (Team 1)
+```
+dotnet run -- --uml          > diagram.mmd     (Mermaid class diagram: Organism hierarchy + OrganismCatalog)
+dotnet run -- --uml full     > full.mmd        (every public class and interface)
+dotnet run -- --uml table    > inheritance.md  (what each class inherits and adds)
+```
+Paste a `.mmd` file's text into https://mermaid.live to export a PNG or SVG. A new group class needs one line in `Data/OrganismFactory.cs`.
 
 ## Third-party packages
 | Package | Version | Used for |

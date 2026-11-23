@@ -12,15 +12,21 @@ public sealed class ExplorerController
     private readonly OrganismCatalog _catalog;
     private readonly IExplorerView _view;
 
-    public ExplorerController(OrganismCatalog catalog, IExplorerView view)
+    private readonly IReadOnlyList<string> _startupNotes;
+
+    public ExplorerController(OrganismCatalog catalog, IExplorerView view,
+                              IEnumerable<string>? startupNotes = null)
     {
         _catalog = catalog ?? throw new ArgumentNullException(nameof(catalog));
         _view = view ?? throw new ArgumentNullException(nameof(view));
+        _startupNotes = (startupNotes ?? Enumerable.Empty<string>()).ToList();
     }
 
     public void Run()
     {
         _view.ShowWelcome();
+        foreach (string note in _startupNotes)      // e.g. data-file loading messages
+            _view.ShowMessage(note);
 
         while (true)
         {

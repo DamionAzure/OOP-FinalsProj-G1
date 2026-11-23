@@ -7,8 +7,9 @@ public sealed class Bird : Animal
     public override string Group => "Bird";
 
     public Bird(string id, string commonName, string scientificName, string habitat,
-                string distinguishingTrait, string diet, bool canFly)
-        : base(id, commonName, scientificName, habitat, distinguishingTrait, diet)
+                string distinguishingTrait, string diet, bool canFly,
+                IEnumerable<string>? sources = null)
+        : base(id, commonName, scientificName, habitat, distinguishingTrait, diet, sources)
     {
         CanFly = canFly;
     }

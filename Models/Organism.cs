@@ -13,6 +13,9 @@ public abstract class Organism
     public string Habitat { get; }
     public string DistinguishingTrait { get; }
 
+    /// <summary>References for this record's facts (required by the project brief).</summary>
+    public IReadOnlyList<string> Sources { get; }
+
     /// <summary>Kingdom is fixed by the subtype (Animal or Plant).</summary>
     public abstract Kingdom Kingdom { get; }
 
@@ -26,8 +29,14 @@ public abstract class Organism
     public abstract string DescribeKeyTrait();
 
     protected Organism(string id, string commonName, string scientificName,
-                       string habitat, string distinguishingTrait)
+                       string habitat, string distinguishingTrait,
+                       IEnumerable<string>? sources = null)
     {
+        Sources = (sources ?? Enumerable.Empty<string>())
+            .Where(s => !string.IsNullOrWhiteSpace(s))
+            .Select(s => s.Trim())
+            .ToList()
+            .AsReadOnly();
         Id = Require(id, nameof(id));
         CommonName = Require(commonName, nameof(commonName));
         ScientificName = Require(scientificName, nameof(scientificName));
@@ -44,7 +53,8 @@ public abstract class Organism
         $"Group:            {Group}{Environment.NewLine}" +
         $"Habitat:          {Habitat}{Environment.NewLine}" +
         $"Distinguishing:   {DistinguishingTrait}{Environment.NewLine}" +
-        $"Key trait:        {DescribeKeyTrait()}";
+        $"Key trait:        {DescribeKeyTrait()}" +
+        (Sources.Count > 0 ? $"{Environment.NewLine}Sources:          {string.Join("; ", Sources)}" : "");
 
     /// <summary>Shared validation helper for subclasses and this class.</summary>
     protected static string Require(string? value, string paramName)
