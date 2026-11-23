@@ -1,9 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "wDIc5368yfI=",
+  "dgSpecHash": "AmJj4REzFtw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\KingdomExplorer.csproj",
+  "projectFilePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Damion\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\nstack.core\\1.1.1\\nstack.core.1.1.1.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\terminal.gui\\1.17.1\\terminal.gui.1.17.1.nupkg.sha512",
     "C:\\Users\\Damion\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.32\\microsoft.netcore.app.ref.8.0.32.nupkg.sha512",
     "C:\\Users\\Damion\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.32\\microsoft.windowsdesktop.app.ref.8.0.32.nupkg.sha512",
     "C:\\Users\\Damion\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.32\\microsoft.aspnetcore.app.ref.8.0.32.nupkg.sha512",

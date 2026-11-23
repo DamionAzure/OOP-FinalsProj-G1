@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\KingdomExplorer.csproj": {}
+    "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\KingdomExplorer.csproj": {
+    "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\KingdomExplorer.csproj",
+        "projectUniqueName": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
         "projectName": "KingdomExplorer",
-        "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\KingdomExplorer.csproj",
+        "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
         "packagesPath": "C:\\Users\\Damion\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\obj\\",
+        "outputPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Damion\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -45,6 +45,16 @@
         "net8.0": {
           "framework": "net8.0",
           "targetAlias": "net8.0",
+          "dependencies": {
+            "FuzzySharp": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
+            "Terminal.Gui": {
+              "target": "Package",
+              "version": "[1.17.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

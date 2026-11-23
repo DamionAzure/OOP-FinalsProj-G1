@@ -8,4 +8,20 @@
     <RootNamespace>KingdomExplorer</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FuzzySharp" Version="2.0.2" />
+  </ItemGroup>
+
+  <!-- Optional Terminal.Gui interface. Off by default so the normal build stays simple.
+       To enable it, set the EnableTui property to true and pass the tui flag (see README). -->
+  <PropertyGroup Condition="'$(EnableTui)' == 'true'">
+    <DefineConstants>$(DefineConstants);TUI</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(EnableTui)' != 'true'">
+    <Compile Remove="UI/TerminalGui/**" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(EnableTui)' == 'true'">
+    <PackageReference Include="Terminal.Gui" Version="1.17.1" />
+  </ItemGroup>
+
 </Project>
