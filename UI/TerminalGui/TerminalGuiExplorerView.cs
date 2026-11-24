@@ -78,6 +78,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
     private bool _workerStarted;
     private bool _disposed;
     private bool _cooldownTimerRunning;
+    private bool _keepResultsFocus;       // results were just shown: ShowMainMenu must not pull focus back to the menu
     private bool _shownHasSound;          // does the shown animal have any sound file?
     private string _playNote = "";
     private string? _playNoteFor;         // ID of the organism _playNote belongs to        // what the last playback did; cleared when another organism is shown
@@ -129,7 +130,8 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         };
         _detailText = new Label
         {
-            X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill()   // text wraps by default
+            X = 0, Y = 0, Width = Dim.Fill(), Height = Dim.Fill(),   // text wraps by default
+            CanFocus = true                                           // so the keyboard can rest on a plant's record
         };
         _halfBlock = new HalfBlockPictureView
         {
@@ -231,6 +233,11 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         _menuWaiting = waiting;
         Ui(() =>
         {
+            if (_keepResultsFocus)
+            {
+                _keepResultsFocus = false;   // stay on the results; Esc (or Tab) goes back to the menu
+                return;
+            }
             SetStatus(MenuStatus);
             _menu.SetFocus();
         });
@@ -271,6 +278,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
             SetListMode(snapshot.Count > 0);
             ShowOrganism(snapshot.Count > 0 ? snapshot[0] : null);
             SetStatus("Tab: switch pane | Up/Down in list: pictures | Esc: menu");
+            FocusResults();
         });
     }
 
@@ -281,7 +289,18 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
             _resultsFrame.Title = $"[{organism.Id}] {organism.CommonName}";
             SetListMode(false);
             ShowOrganism(organism);
+            SetStatus("Tab: switch pane | Esc: menu");
+            FocusResults();
         });
+
+    /// <summary>Moves the keyboard to the info (results) pane: the list if shown, else the sound button, else the record text.</summary>
+    private void FocusResults()
+    {
+        _keepResultsFocus = true;
+        if (_list.Visible) _list.SetFocus();
+        else if (_playButton.Visible && _playButton.Enabled) _playButton.SetFocus();
+        else _detailText.SetFocus();
+    }
 
     // ---------------- UI-thread helpers ----------------
 
@@ -407,7 +426,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
     private void CycleFocus(int step)
     {
         if (_snake?.Visible == true) return;   // the game keeps the keyboard until Esc
-        View[] panes = new View[] { _menu, _list, _picture, _playButton, _input }
+        View[] panes = new View[] { _menu, _list, _picture, _playButton, _detailText, _input }
             .Where(v => v.Visible && v.Enabled && v.CanFocus).ToArray();
         if (panes.Length == 0) return;
 
