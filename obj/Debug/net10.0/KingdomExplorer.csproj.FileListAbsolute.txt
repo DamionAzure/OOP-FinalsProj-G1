@@ -66,3 +66,5 @@ C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net10
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net10.0\KingdomExplorer.genruntimeconfig.cache
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net10.0\ref\KingdomExplorer.dll
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A002.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Audio\README.txt
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Audio\A001.wav

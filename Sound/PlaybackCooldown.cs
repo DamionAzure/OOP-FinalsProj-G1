@@ -15,7 +15,7 @@ public sealed class PlaybackCooldown
     private readonly object _lock = new();
     private readonly TimeSpan _duration;
     private readonly Func<long> _nowMs;       // milliseconds from any steady clock (replaceable in tests)
-    private long _endsAtMs = long.MinValue;
+    private long _endsAtMs;                   // 0 = never started. (long.MinValue would overflow when subtracted from.)
 
     public PlaybackCooldown(TimeSpan? duration = null, Func<long>? nowMs = null)
     {
