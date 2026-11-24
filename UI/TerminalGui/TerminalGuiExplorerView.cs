@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text;
 using KingdomExplorer.Models;
+using KingdomExplorer.Sound;
 using Terminal.Gui.App;
 using Terminal.Gui.Drawing;
 using Terminal.Gui.Input;
@@ -46,6 +47,9 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
 
     private readonly IApplication _app;
     private readonly OrganismImageLoader _images = new();
+    private readonly AnimalSoundLibrary _sounds = new();     // finds A001.wav, A001-1.wav, Lion.wav ...
+    private readonly AudioPlayer _audio = new();
+    private readonly PlaybackCooldown _cooldown = new();     // one cooldown for the button, shared by every animal
     private readonly StringBuilder _output = new();
     private readonly Window _window;
     private readonly FrameView _menuFrame;
@@ -56,6 +60,8 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
     private readonly ImageView _picture;                // Sixel / Kitty terminals
     private readonly HalfBlockPictureView _halfBlock;    // everything else (cmd, classic console)
     private readonly Label _detailText;
+    private readonly Button _playButton;       // plays a random sound (ID variants, 25% common name)
+    private readonly Label _audioNote;         // "Ready", the file that played, or the cooldown countdown
     private readonly Label _promptLabel;
     private readonly TextField _input;
     private readonly Label _status;
@@ -71,6 +77,10 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
     private string _lastStatus = "";
     private bool _workerStarted;
     private bool _disposed;
+    private bool _cooldownTimerRunning;
+    private bool _shownHasSound;          // does the shown animal have any sound file?
+    private string _playNote = "";
+    private string? _playNoteFor;         // ID of the organism _playNote belongs to        // what the last playback did; cleared when another organism is shown
 
     // What the results pane is currently showing (UI thread only).
     private IReadOnlyList<Organism> _listed = Array.Empty<Organism>();
@@ -126,7 +136,11 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
             X = 0, Y = 0, Width = Dim.Absolute(1), Height = Dim.Absolute(1),
             Visible = false
         };
-        _resultsFrame.Add(_list, _picture, _halfBlock, _detailText);
+
+        // ---- audio row (animals only): bottom of the results pane ----
+        _playButton = new Button { Text = "Play Sound (F5)", X = 0, Y = Pos.AnchorEnd(1), Visible = false };
+        _audioNote = new Label { X = Pos.Right(_playButton) + 2, Y = Pos.AnchorEnd(1), Width = Dim.Fill(), Visible = false };
+        _resultsFrame.Add(_list, _picture, _halfBlock, _detailText, _playButton, _audioNote);
 
         // ---- bottom: input bar and status line ----
         _inputFrame = new FrameView
@@ -195,6 +209,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
     {
         if (_disposed) return;
         _disposed = true;
+        _audio.Dispose();
         _window.Dispose();
         _app.Dispose();
     }
@@ -281,7 +296,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
                 CycleFocus(key == Key.Tab ? 1 : -1);
                 key.Handled = true;
             }
-            else if (HandleDesignKey(key))
+            else if (HandleDesignKey(key) || HandleAudioKey(key))
             {
                 key.Handled = true;
             }
@@ -312,6 +327,9 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
                 key.Handled = true;
             }
         };
+
+        // Audio button (mouse click, or Enter / Space while focused).
+        _playButton.Accepted += (_, _) => PlayRequested();
 
         // Moving through the list shows that organism's picture and record.
         _list.ValueChanged += (_, e) =>
@@ -366,6 +384,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         _picture.Visible = false;
         _halfBlock.Visible = false;
         _detailText.Visible = false;
+        _playButton.Visible = _audioNote.Visible = false;
         _snake.Visible = true;
         _snake.SetFocus();
         _snake.Start();
@@ -384,12 +403,12 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         SetStatus("Type your answer, Enter: submit | Esc: cancel");
     }
 
-    /// <summary>Tab / Shift+Tab: menu -> organism list -> picture -> input bar (skipping panes that are hidden).</summary>
+    /// <summary>Tab / Shift+Tab: menu -> organism list -> picture -> audio button -> input bar (skipping panes that are hidden or disabled).</summary>
     private void CycleFocus(int step)
     {
         if (_snake?.Visible == true) return;   // the game keeps the keyboard until Esc
-        View[] panes = new View[] { _menu, _list, _picture, _input }
-            .Where(v => v.Visible && v.CanFocus).ToArray();
+        View[] panes = new View[] { _menu, _list, _picture, _playButton, _input }
+            .Where(v => v.Visible && v.Enabled && v.CanFocus).ToArray();
         if (panes.Length == 0) return;
 
         int current = Array.FindIndex(panes, v => v.HasFocus);
@@ -448,6 +467,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         _picture.X = x;
         _halfBlock.X = x;
         _detailText.X = x;
+        _playButton.X = x;     // the note follows the button
     }
 
     private void HidePictures()
@@ -467,6 +487,7 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         {
             HidePictures();
             _detailText.Y = 0;
+            UpdateAudioControls();
             return;
         }
 
@@ -495,6 +516,11 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
         text.Append(organism.GetDetails().Replace("\r\n", "\n"));
         _detailText.Text = text.ToString();
         _detailText.SetNeedsDraw();
+
+        _shownHasSound = organism is Animal && _sounds.HasSound(organism);
+        if (organism.Id != _playNoteFor)
+            _playNote = "";
+        UpdateAudioControls();
     }
 
     /// <summary>
@@ -539,6 +565,90 @@ public sealed class TerminalGuiExplorerView : IExplorerView, IDisposable
             text
         };
         _status.Text = candidates.FirstOrDefault(c => c.Length <= width) ?? text;
+    }
+
+    // ---------------- audio: Play Sound (F5) = a random sound for the shown animal ----------------
+
+    private bool HandleAudioKey(Key key)
+    {
+        if (key != Key.F5) return false;
+        PlayRequested();
+        return true;
+    }
+
+    /// <summary>
+    /// The button was pressed (or F5). Plays a random sound, then starts the 2-second cooldown.
+    /// The cooldown belongs to the view, not the animal, so selecting another animal does not reset it.
+    /// </summary>
+    private void PlayRequested()
+    {
+        if (_snake?.Visible == true || _shown is not Animal animal || !_shownHasSound)
+            return;
+        if (!_cooldown.TryStart())          // still cooling down (this also guards the F5 key)
+        {
+            UpdateAudioControls();
+            return;
+        }
+
+        string? path = _sounds.PickRandom(animal);
+        if (path is null)
+            _playNote = $"No sound found for {animal.CommonName}";
+        else if (_audio.TryPlay(path, out string error))
+            _playNote = Path.GetFileName(path);
+        else
+            _playNote = error;
+        _playNoteFor = animal.Id;
+
+        StartCooldownTimer();
+        UpdateAudioControls();
+    }
+
+    /// <summary>Refreshes the countdown about ten times a second until the cooldown ends.</summary>
+    private void StartCooldownTimer()
+    {
+        if (_cooldownTimerRunning) return;
+        _cooldownTimerRunning = true;
+
+        _app.AddTimeout(TimeSpan.FromMilliseconds(100), () =>
+        {
+            if (!_disposed && !_closing)
+                UpdateAudioControls();
+            if (!_disposed && !_closing && _cooldown.IsActive)
+                return true;                // keep ticking
+            _cooldownTimerRunning = false;
+            return false;                   // cooldown over: stop
+        });
+    }
+
+    /// <summary>Shows or hides the audio row and sets the buttons and note from the current state.</summary>
+    private void UpdateAudioControls()
+    {
+        bool animal = _shown is Animal && _snake?.Visible != true;
+        _playButton.Visible = _audioNote.Visible = animal;
+        _detailText.Height = animal ? Dim.Fill(2) : Dim.Fill();   // keep the record text off the audio row
+        if (!animal) return;
+
+        bool cooling = _cooldown.IsActive;
+        _playButton.Enabled = _shownHasSound && !cooling;
+
+        if (cooling)
+        {
+            const int barWidth = 10;
+            double seconds = _cooldown.Remaining.TotalSeconds;
+            double fraction = Math.Clamp(seconds / PlaybackCooldown.DefaultDuration.TotalSeconds, 0, 1);
+            int filled = (int)Math.Ceiling(fraction * barWidth);
+            string bar = new string('#', filled) + new string('-', barWidth - filled);
+            string played = string.IsNullOrEmpty(_playNote) ? "" : $"  {_playNote}";
+            _audioNote.Text = $"Cooldown {seconds:0.0}s [{bar}]{played}";
+        }
+        else if (!_shownHasSound)
+        {
+            _audioNote.Text = $"No sound yet. Add Audio/{_shown!.Id}.wav";
+        }
+        else
+        {
+            _audioNote.Text = string.IsNullOrEmpty(_playNote) ? "Ready" : $"Played: {_playNote}";
+        }
     }
 
     // ---------------- designs: themes (F2), layouts (F3), picture mode (F4) ----------------

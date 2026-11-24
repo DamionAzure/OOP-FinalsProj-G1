@@ -41,4 +41,9 @@
     <None Update="Images/**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <!-- Animal sounds: Audio/A001.wav, Audio/A001-1.wav, Audio/Lion.wav ... copied next to the program on build. -->
+  <ItemGroup>
+    <None Update="Audio/**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

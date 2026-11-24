@@ -34,6 +34,8 @@ DevTools/  (development only) CSV loading and the CSV-to-C# converter. Deleted b
 Tools/     UmlGenerator (prints the class diagram and inheritance table from the real code)
 UI/        IExplorerView, ConsoleExplorerView, ExplorerController
 Images/    Organism pictures for the Terminal.Gui interface (optional)
+Audio/     Animal sound effects (.wav) for the Terminal.Gui interface (optional)
+Sound/     AnimalSoundLibrary (finds + randomizes sounds), AudioPlayer, PlaybackCooldown (2 s cooldown)
 Program.cs Composition root (chooses the concrete implementations)
 ```
 
@@ -92,3 +94,9 @@ dotnet run -p:EnableTui=true -- --tui
 
 ## Facts and sources
 Seed data facts must be verified and cited in the project report's References section (e.g., IUCN Red List, Encyclopaedia Britannica, Kew Plants of the World Online).
+
+## Animal sounds (Terminal.Gui interface)
+When an animal is shown, the results pane has a **Play Sound (F5)** button that plays a random sound. Put `.wav` files in `Audio/`
+(see `Audio/README.txt`): `A001.wav`, `A001-1.wav`, `A001-2.wav` ... are the ID sounds and `Lion.wav` is the common-name sound.
+It picks one ID sound at random, or the common-name sound with a 25% chance (falling back to ID sounds if there is no
+common-name file). After each play the button is disabled for 2 seconds with a countdown shown.
