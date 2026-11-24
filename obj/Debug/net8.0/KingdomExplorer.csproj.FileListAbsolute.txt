@@ -30,11 +30,5 @@ C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net8.
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net8.0\KingdomExplorer.pdb
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net8.0\KingdomExplorer.genruntimeconfig.cache
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net8.0\ref\KingdomExplorer.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\NStack.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\System.CodeDom.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\System.Management.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\Terminal.Gui.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\fr-FR\Terminal.Gui.resources.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\ja-JP\Terminal.Gui.resources.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\pt-PT\Terminal.Gui.resources.dll
-C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Management.dll
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\Images\A001.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net8.0\Images\README.txt

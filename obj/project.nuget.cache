@@ -1,19 +1,112 @@
 {
   "version": 2,
-  "dgSpecHash": "AmJj4REzFtw=",
+  "dgSpecHash": "mhrzxKkkSQ0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Damion\\.nuget\\packages\\colorhelper\\1.8.1\\colorhelper.1.8.1.nupkg.sha512",
     "C:\\Users\\Damion\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\nstack.core\\1.1.1\\nstack.core.1.1.1.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\terminal.gui\\1.17.1\\terminal.gui.1.17.1.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.32\\microsoft.netcore.app.ref.8.0.32.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.32\\microsoft.windowsdesktop.app.ref.8.0.32.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.32\\microsoft.aspnetcore.app.ref.8.0.32.nupkg.sha512",
-    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.32\\microsoft.netcore.app.host.win-x64.8.0.32.nupkg.sha512"
+    "C:\\Users\\Damion\\.nuget\\packages\\jetbrains.annotations\\2026.2.0\\jetbrains.annotations.2026.2.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\markdig\\1.4.2\\markdig.1.4.2.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.configuration\\11.0.0\\microsoft.extensions.configuration.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\11.0.0\\microsoft.extensions.configuration.abstractions.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.configuration.binder\\11.0.0\\microsoft.extensions.configuration.binder.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\11.0.0\\microsoft.extensions.configuration.fileextensions.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.configuration.json\\11.0.0\\microsoft.extensions.configuration.json.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\11.0.0\\microsoft.extensions.dependencyinjection.abstractions.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\11.0.0\\microsoft.extensions.fileproviders.abstractions.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\11.0.0\\microsoft.extensions.fileproviders.physical.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\11.0.0\\microsoft.extensions.filesystemglobbing.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\11.0.0\\microsoft.extensions.logging.abstractions.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.options\\11.0.0\\microsoft.extensions.options.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\microsoft.extensions.primitives\\11.0.0\\microsoft.extensions.primitives.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\onigwrap\\1.0.11\\onigwrap.1.0.11.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\sixlabors.imagesharp\\3.1.12\\sixlabors.imagesharp.3.1.12.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.diagnostics.diagnosticsource\\11.0.0\\system.diagnostics.diagnosticsource.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.io.abstractions\\23.0.1\\system.io.abstractions.23.0.1.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.io.pipelines\\11.0.0\\system.io.pipelines.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.text.encodings.web\\11.0.0\\system.text.encodings.web.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\system.text.json\\11.0.0\\system.text.json.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\terminal.gui\\2.6.0\\terminal.gui.2.6.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\testableio.system.io.abstractions\\23.0.1\\testableio.system.io.abstractions.23.0.1.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\testableio.system.io.abstractions.wrappers\\23.0.1\\testableio.system.io.abstractions.wrappers.23.0.1.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\testably.abstractions.filesystem.interface\\11.0.0\\testably.abstractions.filesystem.interface.11.0.0.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\textmatesharp\\2.0.5\\textmatesharp.2.0.5.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\textmatesharp.grammars\\2.0.5\\textmatesharp.grammars.2.0.5.nupkg.sha512",
+    "C:\\Users\\Damion\\.nuget\\packages\\wcwidth\\5.0.2\\wcwidth.5.0.2.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-gwg2-r3hj-4w44",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known high severity vulnerability, https://github.com/advisories/GHSA-j3p4-wp97-rph4",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known high severity vulnerability, https://github.com/advisories/GHSA-j9gm-c75j-xc9q",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known high severity vulnerability, https://github.com/advisories/GHSA-jjfr-hcj7-qf5w",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known high severity vulnerability, https://github.com/advisories/GHSA-v76p-62qx-wwq2",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'SixLabors.ImageSharp' 3.1.12 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-wmxv-xphr-5c9g",
+      "projectPath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Damion\\Desktop\\KingdomExplorerProject\\OOP-FinalsProj-G1\\KingdomExplorer.csproj",
+      "libraryId": "SixLabors.ImageSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

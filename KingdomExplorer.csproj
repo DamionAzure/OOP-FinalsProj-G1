@@ -6,29 +6,39 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>KingdomExplorer</RootNamespace>
+    <!-- Lets the normal build also run on a machine that only has a newer .NET runtime installed. -->
+    <RollForward>Major</RollForward>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
   </ItemGroup>
 
-  <!-- Team 2's data file: copied next to the program so it can be edited without touching C# -->
-  <ItemGroup>
-    <None Update="Data/organisms.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  <!-- Development tools (CSV loading and the C# exporter) are switched on only while the DevTools folder exists.
+       Deleting that folder turns them off and leaves a pure C# project. -->
+  <PropertyGroup Condition="Exists('DevTools')">
+    <DefineConstants>$(DefineConstants);DEVTOOLS</DefineConstants>
+  </PropertyGroup>
 
-  <!-- Optional Terminal.Gui interface. Off by default so the normal build stays simple.
+  <!-- Optional Terminal.Gui interface. Off by default so the normal build stays simple (.NET 8, no extra packages).
+       Terminal.Gui v2 targets .NET 10 only, so the TUI build switches the whole project to net10.0.
        To enable it, set the EnableTui property to true and pass the tui flag (see README). -->
   <PropertyGroup Condition="'$(EnableTui)' == 'true'">
+    <TargetFramework>net10.0</TargetFramework>
     <DefineConstants>$(DefineConstants);TUI</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(EnableTui)' != 'true'">
     <Compile Remove="UI/TerminalGui/**" />
   </ItemGroup>
   <ItemGroup Condition="'$(EnableTui)' == 'true'">
-    <PackageReference Include="Terminal.Gui" Version="1.17.1" />
+    <PackageReference Include="Terminal.Gui" Version="2.6.0" />
+    <!-- Decodes the organism pictures (PNG, JPEG, GIF, BMP, WebP). Floats within 3.1.x; pin the exact version once restored. -->
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.*" />
+  </ItemGroup>
+
+  <!-- Organism pictures: Images/A001.png, Images/Lion.jpg ... copied next to the program on build. -->
+  <ItemGroup>
+    <None Update="Images/**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

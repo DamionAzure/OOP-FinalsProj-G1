@@ -2,6 +2,9 @@ using KingdomExplorer.Catalog;
 using KingdomExplorer.Data;
 using KingdomExplorer.Tools;
 using KingdomExplorer.UI;
+#if DEVTOOLS
+using KingdomExplorer.DevTools;
+#endif
 #if TUI
 using KingdomExplorer.UI.TerminalGui;
 #endif
@@ -15,6 +18,12 @@ if (umlAt >= 0)
     return;
 }
 
+#if DEVTOOLS
+// ---- Development only: dotnet run -- --export-cs  (writes Data/OrganismData.cs from the CSV) ----
+if (DevCommands.TryRunExport(args))
+    return;
+#endif
+
 // Composition root: the ONLY place that chooses concrete implementations.
 // FuzzySharp is plugged in below. For plain matching, use NameSearchStrategy
 // and NoSuggestionProvider instead.
@@ -22,15 +31,21 @@ var catalog = new OrganismCatalog(
     new FuzzySearchStrategy(),
     new FuzzySuggestionProvider());
 
-// ---- Data: Data/organisms.csv (or: dotnet run -- --data path\to\file.csv) ----
-int dataAt = Array.IndexOf(args, "--data");
-string dataPath = dataAt >= 0 && dataAt + 1 < args.Length
-    ? args[dataAt + 1]
-    : Path.Combine(AppContext.BaseDirectory, "Data", "organisms.csv");
+// ---- Data: records written in Data/OrganismData.cs ----
+IOrganismRepository repository = new OrganismData();
+#if DEVTOOLS
+repository = DevCommands.CreateRepository(args) ?? repository;   // development: use the CSV if present
+#endif
 
-var notes = new List<string>();
-LoadResult loaded = new CsvOrganismRepository(dataPath).Load();
-notes.AddRange(loaded.Notes);
+LoadResult loaded = repository.Load();
+var notes = new List<string>(loaded.Notes);
+
+if (loaded.Organisms.Count == 0 && repository is not OrganismData)
+{
+    notes.Add("Nothing usable was loaded, so the records in OrganismData.cs are used instead.");
+    loaded = new OrganismData().Load();
+    notes.AddRange(loaded.Notes);
+}
 
 foreach (var organism in loaded.Organisms)
 {
@@ -41,15 +56,7 @@ foreach (var organism in loaded.Organisms)
     }
 }
 
-if (catalog.Count == 0)
-{
-    notes.Add("No usable records were loaded, so the built-in sample data is being used.");
-    SeedData.Load(catalog);
-}
-else
-{
-    notes.Insert(0, $"Loaded {catalog.Count} organisms from {Path.GetFileName(dataPath)}.");
-}
+notes.Insert(0, $"Loaded {catalog.Count} organisms from {loaded.Source}.");
 
 // Default: plain console. Optional Terminal.Gui interface (build with -p:EnableTui=true, run with --tui).
 IExplorerView view = new ConsoleExplorerView();

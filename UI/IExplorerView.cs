@@ -4,7 +4,7 @@ namespace KingdomExplorer.UI;
 
 /// <summary>
 /// EXTENSION POINT: everything the controller needs from a user interface.
-/// ConsoleExplorerView is the default. A Terminal.Gui view could implement this later.
+/// ConsoleExplorerView is the default. TerminalGuiExplorerView (optional, UI/TerminalGui) is the full-screen alternative.
 /// All input methods return null when input ends (e.g., Ctrl+Z / Ctrl+D).
 /// </summary>
 public interface IExplorerView
