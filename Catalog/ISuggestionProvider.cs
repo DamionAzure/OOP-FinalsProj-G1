@@ -4,7 +4,8 @@ namespace KingdomExplorer.Catalog;
 
 /// <summary>
 /// EXTENSION POINT: optional "Did you mean...?" suggestions shown when a search finds nothing.
-/// The default (NoSuggestionProvider) returns none. A FuzzySharp-based class could implement this later.
+/// NoSuggestionProvider returns none; FuzzySuggestionProvider (FuzzySharp) returns close names.
+/// Program.cs chooses which one the catalog uses.
 /// </summary>
 public interface ISuggestionProvider
 {

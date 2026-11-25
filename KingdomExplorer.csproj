@@ -14,12 +14,6 @@
     <PackageReference Include="FuzzySharp" Version="2.0.2" />
   </ItemGroup>
 
-  <!-- Development tools (CSV loading and the C# exporter) are switched on only while the DevTools folder exists.
-       Deleting that folder turns them off and leaves a pure C# project. -->
-  <PropertyGroup Condition="Exists('DevTools')">
-    <DefineConstants>$(DefineConstants);DEVTOOLS</DefineConstants>
-  </PropertyGroup>
-
   <!-- Optional Terminal.Gui interface. Off by default so the normal build stays simple (.NET 8, no extra packages).
        Terminal.Gui v2 targets .NET 10 only, so the TUI build switches the whole project to net10.0.
        To enable it, set the EnableTui property to true and pass the tui flag (see README). -->

@@ -6,7 +6,7 @@ namespace KingdomExplorer.Sound;
 /// <summary>
 /// Finds the sound effects for an organism and picks one at random.
 ///
-/// CONVENTION (same idea as the pictures; no change to the Organism classes or the CSV needed):
+/// CONVENTION (same idea as the pictures; no change to the Organism classes needed):
 /// a sound is a .wav file in an "Audio" folder, named after the organism's ID or its common name.
 /// For ID A001 / common name Lion:
 ///     Audio/A001.wav      ID sound

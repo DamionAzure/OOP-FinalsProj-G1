@@ -8,7 +8,7 @@ namespace KingdomExplorer.UI.TerminalGui;
 /// <summary>
 /// Finds and decodes the picture for an organism.
 ///
-/// CONVENTION (no change to the Organism classes or the CSV needed): a picture is a file in an
+/// CONVENTION (no change to the Organism classes needed): a picture is a file in an
 /// "Images" folder named after the organism's ID or its common name, in any common format, e.g.
 ///     Images/A001.png      (by ID)
 ///     Images/Lion.jpg      (by common name; "Philippine Tarsier" also matches Philippine_Tarsier / Philippine-Tarsier)

@@ -8,7 +8,7 @@ C# console application for the OOP Final Project (menu-driven explorer of Animal
 
 ## Build and run
 ```
-cd KingdomExplorerProject
+cd KingdomExplorer
 dotnet build
 dotnet run
 ```
@@ -28,9 +28,7 @@ Empty input and invalid options show a message and return to the menu.
 Models/    Organism (abstract) -> Animal / Plant (abstract) -> Mammal, Bird / FloweringPlant, Fern
 Catalog/   OrganismCatalog (private list, add/list/search/filter), ISearchStrategy, ISuggestionProvider,
            NameSearchStrategy (plain), FuzzySearchStrategy + FuzzySuggestionProvider (FuzzySharp)
-Data/      OrganismData (the organism records, written in C#), IOrganismRepository + LoadResult
-           organisms.csv (development only: the spreadsheet teammates edit)
-DevTools/  (development only) CSV loading and the CSV-to-C# converter. Deleted before submission.
+Data/      OrganismData (the organism records, written in C#), IOrganismRepository + LoadResult, SeedData
 Tools/     UmlGenerator (prints the class diagram and inheritance table from the real code)
 UI/        IExplorerView, ConsoleExplorerView, ExplorerController
 Images/    Organism pictures for the Terminal.Gui interface (optional)
@@ -45,17 +43,10 @@ Program.cs Composition root (chooses the concrete implementations)
 - **Inheritance:** `Animal`/`Plant` derive from `Organism`; `Mammal`/`Bird` derive from `Animal`; `FloweringPlant`/`Fern` derive from `Plant`.
 - **Polymorphism:** the catalog stores `Organism` references; `ConsoleExplorerView` and `Organism.GetDetails()` call `DescribeKeyTrait()`, and the runtime picks the subtype's override.
 
-## Adding or editing organisms (Team 2) - development workflow
-While the team is working, organisms are edited in `Data/organisms.csv` (Excel or Google Sheets, one row per organism,
-sources in the `sources` column separated by `|`, saved as CSV UTF-8). `dotnet run` loads that file and reports any bad row.
-The column names match the constructor parameters of the classes in `Models/`, and `type` is the class name.
-
-## Switching to pure C# before submitting
-The submitted project uses no data files. When the data is final:
-1. `dotnet run -- --export-cs` writes `Data/OrganismData.cs` (all records as C# code) from the CSV.
-2. Delete the `DevTools` folder and `Data/organisms.csv`. The project then builds with the C# data only.
-3. `dotnet build` and `dotnet run` once more. The startup line should say "Loaded N organisms from OrganismData.cs".
-`MakeSubmission.bat` does steps 2 and 3 on a clean copy and zips it.
+## Adding or editing organisms
+All records are written in C# in `Data/OrganismData.cs` (no data files). See `Data/HOW_TO_ADD_DATA.md`.
+Each record passes its sources to the `sources:` argument. Sources that start with `SUGGESTED` are unchecked placeholders:
+the app reports them at startup until they are confirmed and the word `SUGGESTED` is removed.
 
 ## Diagrams for the report (Team 1)
 ```
@@ -63,7 +54,7 @@ dotnet run -- --uml          > diagram.mmd     (Mermaid class diagram: Organism 
 dotnet run -- --uml full     > full.mmd        (every public class and interface)
 dotnet run -- --uml table    > inheritance.md  (what each class inherits and adds)
 ```
-Paste a `.mmd` file's text into https://mermaid.live to export a PNG or SVG. A new group needs only its new class in `Models/` plus a CSV column named after its extra constructor parameter(s).
+Paste a `.mmd` file's text into https://mermaid.live to export a PNG or SVG. A new group needs only its new class in `Models/` plus entries in `Data/OrganismData.cs` that use it.
 
 ## Third-party packages
 | Package | Version | Used for |
@@ -96,6 +87,7 @@ Check your SDKs with `dotnet --list-sdks`; one of them must start with `10.`.
 
 ## Facts and sources
 Seed data facts must be verified and cited in the project report's References section (e.g., IUCN Red List, Encyclopaedia Britannica, Kew Plants of the World Online).
+The records currently list `SUGGESTED` placeholder sources (IUCN Red List for animals, Kew Plants of the World Online for plants). Open each source, confirm the facts, and replace the placeholder text.
 
 ## Animal sounds (Terminal.Gui interface)
 When an animal is shown, the results pane has a **Play Sound (F5)** button that plays a random sound. Put `.wav` files in `Audio/`
