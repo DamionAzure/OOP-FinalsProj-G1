@@ -83,6 +83,8 @@ Terminal.Gui v2 targets **.NET 10 only**, so this mode needs the .NET 10 SDK; th
 ```
 dotnet run -p:EnableTui=true -- --tui
 ```
+Plain `dotnet run -- --tui` also works: the normal build starts the TUI build for you (or tells you what is missing, e.g. "the .NET 10 SDK was not found").
+Check your SDKs with `dotnet --list-sdks`; one of them must start with `10.`.
 - One full-screen layout: menu (left), results (right), input bar and status line (bottom). Arrow keys and Enter, Tab to switch pane, Esc on the menu to exit.
 - **Pictures:** the results pane lists the organisms; the highlighted one (or the one you look up by ID) is shown with its picture and full record. Press Tab (Shift+Tab goes back) to move between the menu, list, picture and input bar, then Up/Down in the list. Option 5 (view by ID) shows the picture too.
 - Put pictures in `Images/`, named by ID or common name (`Images/A001.png`, `Images/Lion.jpg`). PNG, JPEG, GIF, BMP and WebP work. No file means a short "no picture yet" note. See `Images/README.txt`.

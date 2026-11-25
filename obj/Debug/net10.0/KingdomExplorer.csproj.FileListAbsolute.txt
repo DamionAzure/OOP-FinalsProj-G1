@@ -68,3 +68,13 @@ C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\obj\Debug\net10
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A002.jpg
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Audio\README.txt
 C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Audio\A001.wav
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A003.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A004.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A005.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\A006.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P001.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P002.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P003.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P004.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P005.jpg
+C:\Users\Damion\Desktop\KingdomExplorerProject\OOP-FinalsProj-G1\bin\Debug\net10.0\Images\P006.jpg

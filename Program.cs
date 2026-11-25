@@ -18,6 +18,16 @@ if (umlAt >= 0)
     return;
 }
 
+#if !TUI
+// "--tui" needs the Terminal.Gui build. In the normal build, start that build (or explain what is missing)
+// instead of quietly showing the console menu.
+if (args.Contains("--tui"))
+{
+    Environment.ExitCode = TuiLauncher.Run(args);
+    return;
+}
+#endif
+
 #if DEVTOOLS
 // ---- Development only: dotnet run -- --export-cs  (writes Data/OrganismData.cs from the CSV) ----
 if (DevCommands.TryRunExport(args))
