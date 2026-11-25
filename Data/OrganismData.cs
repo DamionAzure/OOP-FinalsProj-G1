@@ -3,28 +3,13 @@ using KingdomExplorer.Models;
 namespace KingdomExplorer.Data;
 
 /// <summary>
-/// ALL ORGANISM RECORDS LIVE HERE. Each record is one block starting with "() => new ...(".
-///
-/// TO ADD AN ORGANISM: copy a whole block of the same type, paste it right after that block
-/// (before the closing "};"), and change the values. Keep the quotes and commas. The app lists any
-/// entry that was skipped (with its number and the reason) when it starts.
-///
-/// Every type needs:  id (unique), commonName, scientificName, habitat, distinguishingTrait, sources.
-/// Extra fields:      Mammal diet, bodyCovering | Bird diet, canFly | FloweringPlant flowerColor |
-///                    Fern frondDescription
-///
-/// SOURCES: replace each "SUGGESTED - verify: ..." text with the real citation after you have
-/// opened the source and confirmed the facts.
+/// Hardcoded organism catalog records in pure C# (no CSV dependency).
+/// Every record uses one of the concrete subtypes: Mammal, Bird, FloweringPlant, or Fern.
 /// </summary>
 public sealed class OrganismData : IOrganismRepository
 {
-    // Each entry is wrapped in "() =>" so one bad entry can be skipped and reported
-    // without stopping the others.
     private static readonly List<Func<Organism>> Records = new()
     {
-        // ===================== ANIMALS =====================
-
-        // ----- Mammal -----
         () => new Mammal(
             id: "A001",
             commonName: "Lion",
@@ -32,8 +17,7 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Savannas and grasslands of sub-Saharan Africa (small population in Gir Forest, India)",
             distinguishingTrait: "The only big cat that lives in social groups called prides.",
             diet: "Carnivore",
-            bodyCovering: "Short tawny fur",
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Panthera leo", "SUGGESTED - verify: Encyclopaedia Britannica: lion" }),
+            bodyCovering: "Short tawny fur"),
 
         () => new Mammal(
             id: "A002",
@@ -42,8 +26,7 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Tropical forests of the southern Philippines, such as on Bohol",
             distinguishingTrait: "Tiny nocturnal primate with very large eyes.",
             diet: "Carnivore (insects and small animals)",
-            bodyCovering: "Soft fur",
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Carlito syrichta", "SUGGESTED - verify: Encyclopaedia Britannica: tarsier" }),
+            bodyCovering: "Soft fur"),
 
         () => new Mammal(
             id: "A003",
@@ -52,10 +35,8 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Open oceans worldwide",
             distinguishingTrait: "The largest animal known to have ever lived.",
             diet: "Filter feeder (mainly krill)",
-            bodyCovering: "Smooth skin with very little hair",
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Balaenoptera musculus", "SUGGESTED - verify: Encyclopaedia Britannica: blue whale" }),
+            bodyCovering: "Smooth skin with very little hair"),
 
-        // ----- Bird -----
         () => new Bird(
             id: "A004",
             commonName: "Philippine Eagle",
@@ -63,8 +44,7 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Rainforests of Luzon, Samar, Leyte, and Mindanao",
             distinguishingTrait: "One of the world's largest eagles, with a shaggy crest; the national bird of the Philippines.",
             diet: "Carnivore (monkeys, flying lemurs, birds, reptiles)",
-            canFly: true,
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Pithecophaga jefferyi", "SUGGESTED - verify: Philippine Eagle Foundation" }),
+            canFly: true),
 
         () => new Bird(
             id: "A005",
@@ -73,8 +53,7 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Antarctic sea ice and the surrounding ocean",
             distinguishingTrait: "The largest penguin; males incubate the egg through the Antarctic winter.",
             diet: "Carnivore (fish, squid, and krill)",
-            canFly: false,
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Aptenodytes forsteri", "SUGGESTED - verify: Encyclopaedia Britannica: emperor penguin" }),
+            canFly: false),
 
         () => new Bird(
             id: "A006",
@@ -83,21 +62,15 @@ public sealed class OrganismData : IOrganismRepository
             habitat: "Open country, farmland, and grasslands on every continent except Antarctica",
             distinguishingTrait: "Heart-shaped white face and near-silent flight.",
             diet: "Carnivore (mostly small mammals)",
-            canFly: true,
-            sources: new[] { "SUGGESTED - verify: IUCN Red List: Tyto alba", "SUGGESTED - verify: Encyclopaedia Britannica: barn owl" }),
+            canFly: true),
 
-
-        // ===================== PLANTS =====================
-
-        // ----- Flowering Plant -----
         () => new FloweringPlant(
             id: "P001",
             commonName: "Sunflower",
             scientificName: "Helianthus annuus",
             habitat: "Open, sunny fields and farmland; native to North America",
             distinguishingTrait: "Young flower heads follow the sun across the sky.",
-            flowerColor: "Yellow petals with a brown center",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Helianthus annuus", "SUGGESTED - verify: Encyclopaedia Britannica: sunflower" }),
+            flowerColor: "Yellow petals with a brown center"),
 
         () => new FloweringPlant(
             id: "P002",
@@ -105,8 +78,7 @@ public sealed class OrganismData : IOrganismRepository
             scientificName: "Jasminum sambac",
             habitat: "Warm tropical lowlands and gardens; widely grown in the Philippines",
             distinguishingTrait: "Very fragrant flowers; the national flower of the Philippines.",
-            flowerColor: "White",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Jasminum sambac", "SUGGESTED - verify: Encyclopaedia Britannica: jasmine" }),
+            flowerColor: "White"),
 
         () => new FloweringPlant(
             id: "P003",
@@ -114,18 +86,15 @@ public sealed class OrganismData : IOrganismRepository
             scientificName: "Pterocarpus indicus",
             habitat: "Tropical lowland forests of Southeast Asia and the western Pacific",
             distinguishingTrait: "Large tree valued for its hardwood; the national tree of the Philippines.",
-            flowerColor: "Yellow",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Pterocarpus indicus", "SUGGESTED - verify: IUCN Red List: Pterocarpus indicus" }),
+            flowerColor: "Yellow"),
 
-        // ----- Fern -----
         () => new Fern(
             id: "P004",
             commonName: "Bracken",
             scientificName: "Pteridium aquilinum",
             habitat: "Open woodlands, heaths, and hillsides across much of the world",
             distinguishingTrait: "One of the most widespread ferns on Earth.",
-            frondDescription: "Large, triangular, and much-divided",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Pteridium aquilinum", "SUGGESTED - verify: Encyclopaedia Britannica: bracken" }),
+            frondDescription: "Large, triangular, and much-divided"),
 
         () => new Fern(
             id: "P005",
@@ -133,8 +102,7 @@ public sealed class OrganismData : IOrganismRepository
             scientificName: "Asplenium nidus",
             habitat: "Tropical forests, often growing on tree trunks",
             distinguishingTrait: "Fronds form a nest-like rosette that catches fallen leaves.",
-            frondDescription: "Undivided, glossy, and arranged in a rosette",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Asplenium nidus", "SUGGESTED - verify: Encyclopaedia Britannica: fern" }),
+            frondDescription: "Undivided, glossy, and arranged in a rosette"),
 
         () => new Fern(
             id: "P006",
@@ -142,9 +110,415 @@ public sealed class OrganismData : IOrganismRepository
             scientificName: "Adiantum capillus-veneris",
             habitat: "Moist, shaded rocks, cliffs, and damp walls",
             distinguishingTrait: "Thin dark stalks hold delicate fan-shaped leaflets.",
-            frondDescription: "Delicate, fan-shaped leaflets",
-            sources: new[] { "SUGGESTED - verify: Plants of the World Online (Kew): Adiantum capillus-veneris", "SUGGESTED - verify: Encyclopaedia Britannica: maidenhair fern" }),
+            frondDescription: "Delicate, fan-shaped leaflets"),
 
+        () => new Mammal(
+            id: "A007",
+            commonName: "Tiger",
+            scientificName: "Panthera tigris",
+            habitat: "Tropical forests, grasslands, and mangrove swamps",
+            distinguishingTrait: "Orange coat with black stripes; powerful solitary predator",
+            diet: "Carnivore (deer, wild pigs, and other large prey)",
+            bodyCovering: "Fur"),
+
+        () => new Mammal(
+            id: "A008",
+            commonName: "Red Fox",
+            scientificName: "Vulpes vulpes",
+            habitat: "Forests, grasslands, mountains, and urban areas",
+            distinguishingTrait: "Pointed ears and long bushy tail",
+            diet: "Omnivore (small mammals, birds, insects, and fruits)",
+            bodyCovering: "Fur"),
+
+        () => new Mammal(
+            id: "A009",
+            commonName: "Giant Panda",
+            scientificName: "Ailuropoda melanoleuca",
+            habitat: "Temperate mountain forests of central China",
+            distinguishingTrait: "Black-and-white markings and enlarged wrist bone used to grip bamboo",
+            diet: "Herbivore (mostly bamboo)",
+            bodyCovering: "Fur"),
+
+        () => new Bird(
+            id: "A010",
+            commonName: "Bald Eagle",
+            scientificName: "Haliaeetus leucocephalus",
+            habitat: "Coasts, rivers, and large lakes across North America",
+            distinguishingTrait: "White head and tail contrasting with a dark brown body; national bird of the United States.",
+            diet: "Carnivore (mainly fish, plus waterfowl and small mammals)",
+            canFly: true),
+
+        () => new Mammal(
+            id: "A011",
+            commonName: "Red Kangaroo",
+            scientificName: "Osphranter rufus",
+            habitat: "Arid and semi-arid grasslands and scrublands of Australia",
+            distinguishingTrait: "Strong hind legs and a pouch for carrying young",
+            diet: "Herbivore (grasses and shrubs)",
+            bodyCovering: "Fur"),
+
+        () => new Bird(
+            id: "A012",
+            commonName: "Atlantic Puffin",
+            scientificName: "Fratercula arctica",
+            habitat: "North Atlantic coastal cliffs and open ocean",
+            distinguishingTrait: "Brightly colored triangular bill during breeding season and black-and-white plumage.",
+            diet: "Carnivore (small marine fish such as sand eels and herring)",
+            canFly: true),
+
+        () => new Bird(
+            id: "A013",
+            commonName: "Peregrine Falcon",
+            scientificName: "Falco peregrinus",
+            habitat: "Coastal cliffs, mountains, wetlands, and cities worldwide",
+            distinguishingTrait: "Extremely fast diving flight and dark facial markings",
+            diet: "Carnivore (mainly birds)",
+            canFly: true),
+
+        () => new Bird(
+            id: "A014",
+            commonName: "Ruby-throated Hummingbird",
+            scientificName: "Archilochus colubris",
+            habitat: "Open woodlands, meadows, and gardens in eastern North America; winters in Central America",
+            distinguishingTrait: "Iridescent green back, metallic red throat in males, and ability to hover and fly backward.",
+            diet: "Omnivore (flower nectar and small insects)",
+            canFly: true),
+
+        () => new Bird(
+            id: "A015",
+            commonName: "Greater Flamingo",
+            scientificName: "Phoenicopterus roseus",
+            habitat: "Shallow coastal lagoons, mudflats, and salt lakes across Africa, southern Europe, and Asia",
+            distinguishingTrait: "Long legs, S-curved neck, downward-bent bill, and pink plumage from carotenoid-rich food.",
+            diet: "Omnivore (brine shrimp, blue-green algae, and small invertebrates)",
+            canFly: true),
+
+        () => new Mammal(
+            id: "A016",
+            commonName: "Atlantic Bottlenose Dolphin",
+            scientificName: "Tursiops truncatus",
+            habitat: "Temperate and tropical oceans and coastal waters",
+            distinguishingTrait: "Curved mouth and uses echolocation to navigate and hunt",
+            diet: "Carnivore (fish, squid, and crustaceans)",
+            bodyCovering: "Smooth skin"),
+
+        () => new Bird(
+            id: "A017",
+            commonName: "Snowy Owl",
+            scientificName: "Bubo scandiacus",
+            habitat: "Arctic tundra and open northern landscapes",
+            distinguishingTrait: "White plumage with dark markings and yellow eyes",
+            diet: "Carnivore (lemmings and other small animals)",
+            canFly: true),
+
+        () => new Bird(
+            id: "A018",
+            commonName: "Cassowary",
+            scientificName: "Casuarius casuarius",
+            habitat: "Tropical rainforests of New Guinea and northeastern Australia",
+            distinguishingTrait: "Large flightless bird with a prominent helmet-like casque and dagger-like inner toe claw.",
+            diet: "Herbivore (mainly fallen rainforest fruits, occasionally fungi and insects)",
+            canFly: false),
+
+        () => new Mammal(
+            id: "A019",
+            commonName: "African Elephant",
+            scientificName: "Loxodonta africana",
+            habitat: "Savannas, forests, and grasslands of sub-Saharan Africa",
+            distinguishingTrait: "Large ears, trunk, and tusks",
+            diet: "Herbivore (grasses, leaves, bark, and fruit)",
+            bodyCovering: "Sparse hair; thick skin"),
+
+        () => new Mammal(
+            id: "A020",
+            commonName: "Polar Bear",
+            scientificName: "Ursus maritimus",
+            habitat: "Arctic sea ice and nearby coastal areas",
+            distinguishingTrait: "Thick insulating fur and layer of body fat",
+            diet: "Carnivore (mainly seals)",
+            bodyCovering: "Fur"),
+
+        () => new Bird(
+            id: "A021",
+            commonName: "Ostrich",
+            scientificName: "Struthio camelus",
+            habitat: "African savannas and open dry woodlands",
+            distinguishingTrait: "Largest living bird; long legs and cannot fly",
+            diet: "Omnivore (plants, seeds, and small animals)",
+            canFly: false),
+
+        () => new Bird(
+            id: "A022",
+            commonName: "Toco Toucan",
+            scientificName: "Ramphastos toco",
+            habitat: "Semi-open forests, savannas, and woodland edges of central and eastern South America",
+            distinguishingTrait: "Oversized bright orange-yellow bill with a black tip used for reaching fruit and regulating heat.",
+            diet: "Omnivore (fruits, insects, eggs, and small reptiles)",
+            canFly: true),
+
+        () => new Mammal(
+            id: "A023",
+            commonName: "Gray Wolf",
+            scientificName: "Canis lupus",
+            habitat: "Forests, tundra, grasslands, and mountains",
+            distinguishingTrait: "Social pack hunter with a strong sense of smell",
+            diet: "Carnivore (large and small mammals)",
+            bodyCovering: "Fur"),
+
+        () => new Bird(
+            id: "A024",
+            commonName: "Wandering Albatross",
+            scientificName: "Diomedea exulans",
+            habitat: "Southern Ocean surrounding Antarctica",
+            distinguishingTrait: "Has the largest wingspan of any living bird, reaching up to 3.5 meters, built for dynamic soaring.",
+            diet: "Carnivore (squid, fish, and crustaceans)",
+            canFly: true),
+
+        () => new Bird(
+            id: "A025",
+            commonName: "Kiwi",
+            scientificName: "Apteryx mantelli",
+            habitat: "Temperate forests and scrublands of New Zealand",
+            distinguishingTrait: "Nocturnal flightless bird with hair-like feathers and nostrils at the tip of its long bill.",
+            diet: "Omnivore (earthworms, insects, larvae, and fallen fruit)",
+            canFly: false),
+
+        () => new Mammal(
+            id: "A026",
+            commonName: "Giraffe",
+            scientificName: "Giraffa camelopardalis",
+            habitat: "African savannas and open woodlands",
+            distinguishingTrait: "Exceptionally long neck and spotted coat",
+            diet: "Herbivore (leaves, especially acacia)",
+            bodyCovering: "Short fur"),
+
+        () => new Mammal(
+            id: "A027",
+            commonName: "Emperor Tamarin",
+            scientificName: "Saguinus imperator",
+            habitat: "Amazon rainforest canopy",
+            distinguishingTrait: "Distinctive long white moustache",
+            diet: "Omnivore (fruit, insects, tree sap, and small animals)",
+            bodyCovering: "Fur"),
+
+        () => new Bird(
+            id: "A028",
+            commonName: "Common Kingfisher",
+            scientificName: "Alcedo atthis",
+            habitat: "Rivers, streams, lakes, and ponds",
+            distinguishingTrait: "Bright blue-and-orange plumage and long pointed bill",
+            diet: "Carnivore (small fish and aquatic invertebrates)",
+            canFly: true),
+
+        () => new Mammal(
+            id: "A029",
+            commonName: "Humpback Whale",
+            scientificName: "Megaptera novaeangliae",
+            habitat: "Oceans worldwide; migrates between feeding and breeding waters",
+            distinguishingTrait: "Long pectoral fins and complex songs",
+            diet: "Carnivore (krill and small fish)",
+            bodyCovering: "Smooth skin with a layer of blubber"),
+
+        () => new Mammal(
+            id: "A030",
+            commonName: "Meerkat",
+            scientificName: "Suricata suricatta",
+            habitat: "Dry open country and deserts of southern Africa",
+            distinguishingTrait: "Often stands upright as a lookout; lives in groups",
+            diet: "Omnivore (insects, small animals, and some plant matter)",
+            bodyCovering: "Fur"),
+
+        () => new FloweringPlant(
+            id: "P007",
+            commonName: "Rose",
+            scientificName: "Rosa rubiginosa",
+            habitat: "Gardens and temperate regions",
+            distinguishingTrait: "Thorny stems and layered petals",
+            flowerColor: "Pink"),
+
+        () => new FloweringPlant(
+            id: "P008",
+            commonName: "Hibiscus",
+            scientificName: "Hibiscus rosa-sinensis",
+            habitat: "Tropical and subtropical gardens",
+            distinguishingTrait: "Large trumpet-shaped flower with a prominent central column",
+            flowerColor: "Red (also many cultivated colors)"),
+
+        () => new FloweringPlant(
+            id: "P009",
+            commonName: "Mango Tree",
+            scientificName: "Mangifera indica",
+            habitat: "Tropical and subtropical lowlands",
+            distinguishingTrait: "Produces fleshy, sweet stone fruits",
+            flowerColor: "Yellowish-white"),
+
+        () => new FloweringPlant(
+            id: "P010",
+            commonName: "Coconut Palm",
+            scientificName: "Cocos nucifera",
+            habitat: "Tropical coastal areas and islands",
+            distinguishingTrait: "Tall unbranched trunk and large fibrous fruits",
+            flowerColor: "Pale yellow"),
+
+        () => new FloweringPlant(
+            id: "P011",
+            commonName: "Lotus",
+            scientificName: "Nelumbo nucifera",
+            habitat: "Ponds, lakes, and slow-moving freshwater",
+            distinguishingTrait: "Round leaves and flowers held above the water",
+            flowerColor: "Pink or white"),
+
+        () => new FloweringPlant(
+            id: "P012",
+            commonName: "Lavender",
+            scientificName: "Lavandula angustifolia",
+            habitat: "Sunny, well-drained fields and gardens",
+            distinguishingTrait: "Fragrant narrow leaves and spikes of small flowers",
+            flowerColor: "Purple"),
+
+        () => new FloweringPlant(
+            id: "P013",
+            commonName: "Venus Flytrap",
+            scientificName: "Dionaea muscipula",
+            habitat: "Nutrient-poor wetlands and bogs of the Carolinas, USA",
+            distinguishingTrait: "Leaves snap shut to trap small insects",
+            flowerColor: "White"),
+
+        () => new FloweringPlant(
+            id: "P014",
+            commonName: "Bamboo",
+            scientificName: "Bambusa vulgaris",
+            habitat: "Tropical and subtropical forests and cultivated areas",
+            distinguishingTrait: "Fast-growing hollow, jointed stems",
+            flowerColor: "Rarely flowers; usually inconspicuous"),
+
+        () => new FloweringPlant(
+            id: "P015",
+            commonName: "Red Mangrove",
+            scientificName: "Rhizophora mangle",
+            habitat: "Tropical coastal shorelines and tidal wetlands",
+            distinguishingTrait: "Arching prop roots that support the tree in soft mud",
+            flowerColor: "Creamy white"),
+
+        () => new FloweringPlant(
+            id: "P016",
+            commonName: "Blue Passionflower",
+            scientificName: "Passiflora caerulea",
+            habitat: "Warm temperate and tropical gardens; climbing in sunny places",
+            distinguishingTrait: "Distinctive complex flower with a fringe-like corona",
+            flowerColor: "White with blue-purple parts"),
+
+        () => new Fern(
+            id: "P017",
+            commonName: "Staghorn Fern",
+            scientificName: "Platycerium bifurcatum",
+            habitat: "Humid tropical forests; often grows on tree trunks",
+            distinguishingTrait: "Antler-shaped fertile fronds and round shield fronds",
+            frondDescription: "Fertile fronds branch like deer antlers; shield fronds attach to the host"),
+
+        () => new FloweringPlant(
+            id: "P018",
+            commonName: "Sensitive Plant",
+            scientificName: "Mimosa pudica",
+            habitat: "Tropical grasslands, roadsides, and disturbed areas",
+            distinguishingTrait: "Leaflets fold when touched or shaken",
+            flowerColor: "Pink to purple"),
+
+        () => new FloweringPlant(
+            id: "P019",
+            commonName: "Golden Shower Tree",
+            scientificName: "Cassia fistula",
+            habitat: "Tropical and subtropical forests and streetscapes",
+            distinguishingTrait: "Long hanging clusters of bright yellow flowers",
+            flowerColor: "Golden yellow"),
+
+        () => new FloweringPlant(
+            id: "P020",
+            commonName: "Waling-Waling",
+            scientificName: "Vanda sanderiana",
+            habitat: "Lowland tropical forests of the Philippines; often epiphytic",
+            distinguishingTrait: "Large orchid blooms with broad patterned petals",
+            flowerColor: "Pink, mauve, or white with markings"),
+
+        () => new FloweringPlant(
+            id: "P021",
+            commonName: "Anthurium",
+            scientificName: "Anthurium andraeanum",
+            habitat: "Humid tropical forests; commonly grown indoors",
+            distinguishingTrait: "Glossy heart-shaped spathe surrounding a spadix",
+            flowerColor: "Red, pink, or white spathes"),
+
+        () => new FloweringPlant(
+            id: "P022",
+            commonName: "Bougainvillea",
+            scientificName: "Bougainvillea spectabilis",
+            habitat: "Warm tropical and subtropical gardens and dry areas",
+            distinguishingTrait: "Colorful papery bracts surrounding tiny flowers",
+            flowerColor: "Magenta, purple, pink, orange, or white bracts"),
+
+        () => new FloweringPlant(
+            id: "P023",
+            commonName: "Papaya",
+            scientificName: "Carica papaya",
+            habitat: "Tropical lowlands and cultivated gardens",
+            distinguishingTrait: "Tall soft trunk and large lobed leaves; bears large fruits",
+            flowerColor: "Creamy white to yellow"),
+
+        () => new FloweringPlant(
+            id: "P024",
+            commonName: "Gumamela",
+            scientificName: "Hibiscus rosa-sinensis",
+            habitat: "Tropical gardens and hedges",
+            distinguishingTrait: "Large showy flowers and prominent staminal column",
+            flowerColor: "Red, pink, yellow, orange, or white"),
+
+        () => new FloweringPlant(
+            id: "P025",
+            commonName: "Aloe Vera",
+            scientificName: "Aloe vera",
+            habitat: "Dry regions and sunny, well-drained gardens",
+            distinguishingTrait: "Thick fleshy leaves containing clear gel",
+            flowerColor: "Yellow or orange"),
+
+        () => new FloweringPlant(
+            id: "P026",
+            commonName: "Snake Plant",
+            scientificName: "Dracaena trifasciata",
+            habitat: "Dry tropical regions; commonly grown indoors",
+            distinguishingTrait: "Upright sword-shaped leaves with banded patterns",
+            flowerColor: "Greenish-white"),
+
+        () => new FloweringPlant(
+            id: "P027",
+            commonName: "Bird of Paradise",
+            scientificName: "Strelitzia reginae",
+            habitat: "Subtropical gardens and coastal areas",
+            distinguishingTrait: "Flower resembles a brightly colored bird in flight",
+            flowerColor: "Orange and blue"),
+
+        () => new FloweringPlant(
+            id: "P028",
+            commonName: "Water Hyacinth",
+            scientificName: "Pontederia crassipes",
+            habitat: "Still or slow-moving freshwater ponds and waterways",
+            distinguishingTrait: "Floating plant with swollen, air-filled leaf stalks",
+            flowerColor: "Lavender to violet"),
+
+        () => new Fern(
+            id: "P029",
+            commonName: "Boston Fern",
+            scientificName: "Nephrolepis exaltata",
+            habitat: "Humid tropical forests and swamps in the Americas; widely grown indoors",
+            distinguishingTrait: "Arching, sword-shaped pinnate fronds that reproduce via spores on the underside of leaflets.",
+            frondDescription: "Long, arching pinnate fronds with toothed lance-shaped leaflets"),
+
+        () => new Fern(
+            id: "P030",
+            commonName: "Tree Fern",
+            scientificName: "Cyathea cooperi",
+            habitat: "Moist gullies and rainforests of eastern Australia and tropical Pacific islands",
+            distinguishingTrait: "Develops a tall, fibrous trunk-like rhizome topped with a crown of large lacy fronds.",
+            frondDescription: "Large, bipinnate, lacy fronds spreading from a central trunk crown"),
     };
 
     public LoadResult Load()
@@ -159,7 +533,7 @@ public sealed class OrganismData : IOrganismRepository
             {
                 result.Organisms.Add(create());
             }
-            catch (ArgumentException ex)    // thrown by the organism classes' validation
+            catch (ArgumentException ex)
             {
                 int p = ex.Message.IndexOf(" (Parameter", StringComparison.Ordinal);
                 result.Notes.Add($"Entry #{entry} skipped: {(p >= 0 ? ex.Message[..p] : ex.Message)}");
