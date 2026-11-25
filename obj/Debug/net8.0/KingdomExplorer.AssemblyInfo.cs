@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KingdomExplorer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b14486e119e288ad37a0480afaf4966b3565ad0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+724bf5de687910b2141eb06d29b3218ae50d143a")]
 [assembly: System.Reflection.AssemblyProductAttribute("KingdomExplorer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KingdomExplorer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
