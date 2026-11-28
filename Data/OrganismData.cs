@@ -70,60 +70,6 @@ public sealed class OrganismData : IOrganismRepository
             canFly: true,
             sources: new[] { "SUGGESTED: IUCN Red List - Tyto alba" }),
 
-        () => new FloweringPlant(
-            id: "P001",
-            commonName: "Sunflower",
-            scientificName: "Helianthus annuus",
-            habitat: "Open, sunny fields and farmland; native to North America",
-            distinguishingTrait: "Young flower heads follow the sun across the sky.",
-            flowerColor: "Yellow petals with a brown center",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Helianthus annuus" }),
-
-        () => new FloweringPlant(
-            id: "P002",
-            commonName: "Sampaguita",
-            scientificName: "Jasminum sambac",
-            habitat: "Warm tropical lowlands and gardens; widely grown in the Philippines",
-            distinguishingTrait: "Very fragrant flowers; the national flower of the Philippines.",
-            flowerColor: "White",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Jasminum sambac" }),
-
-        () => new FloweringPlant(
-            id: "P003",
-            commonName: "Narra",
-            scientificName: "Pterocarpus indicus",
-            habitat: "Tropical lowland forests of Southeast Asia and the western Pacific",
-            distinguishingTrait: "Large tree valued for its hardwood; the national tree of the Philippines.",
-            flowerColor: "Yellow",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Pterocarpus indicus" }),
-
-        () => new Fern(
-            id: "P004",
-            commonName: "Bracken",
-            scientificName: "Pteridium aquilinum",
-            habitat: "Open woodlands, heaths, and hillsides across much of the world",
-            distinguishingTrait: "One of the most widespread ferns on Earth.",
-            frondDescription: "Large, triangular, and much-divided",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Pteridium aquilinum" }),
-
-        () => new Fern(
-            id: "P005",
-            commonName: "Bird's-nest Fern",
-            scientificName: "Asplenium nidus",
-            habitat: "Tropical forests, often growing on tree trunks",
-            distinguishingTrait: "Fronds form a nest-like rosette that catches fallen leaves.",
-            frondDescription: "Undivided, glossy, and arranged in a rosette",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Asplenium nidus" }),
-
-        () => new Fern(
-            id: "P006",
-            commonName: "Maidenhair Fern",
-            scientificName: "Adiantum capillus-veneris",
-            habitat: "Moist, shaded rocks, cliffs, and damp walls",
-            distinguishingTrait: "Thin dark stalks hold delicate fan-shaped leaflets.",
-            frondDescription: "Delicate, fan-shaped leaflets",
-            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Adiantum capillus-veneris" }),
-
         () => new Mammal(
             id: "A007",
             commonName: "Tiger",
@@ -363,6 +309,60 @@ public sealed class OrganismData : IOrganismRepository
             diet: "Omnivore (insects, small animals, and some plant matter)",
             bodyCovering: "Fur",
             sources: new[] { "SUGGESTED: IUCN Red List - Suricata suricatta" }),
+
+            () => new FloweringPlant(
+            id: "P001",
+            commonName: "Sunflower",
+            scientificName: "Helianthus annuus",
+            habitat: "Open, sunny fields and farmland; native to North America",
+            distinguishingTrait: "Young flower heads follow the sun across the sky.",
+            flowerColor: "Yellow petals with a brown center",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Helianthus annuus" }),
+
+        () => new FloweringPlant(
+            id: "P002",
+            commonName: "Sampaguita",
+            scientificName: "Jasminum sambac",
+            habitat: "Warm tropical lowlands and gardens; widely grown in the Philippines",
+            distinguishingTrait: "Very fragrant flowers; the national flower of the Philippines.",
+            flowerColor: "White",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Jasminum sambac" }),
+
+        () => new FloweringPlant(
+            id: "P003",
+            commonName: "Narra",
+            scientificName: "Pterocarpus indicus",
+            habitat: "Tropical lowland forests of Southeast Asia and the western Pacific",
+            distinguishingTrait: "Large tree valued for its hardwood; the national tree of the Philippines.",
+            flowerColor: "Yellow",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Pterocarpus indicus" }),
+
+        () => new Fern(
+            id: "P004",
+            commonName: "Bracken",
+            scientificName: "Pteridium aquilinum",
+            habitat: "Open woodlands, heaths, and hillsides across much of the world",
+            distinguishingTrait: "One of the most widespread ferns on Earth.",
+            frondDescription: "Large, triangular, and much-divided",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Pteridium aquilinum" }),
+
+        () => new Fern(
+            id: "P005",
+            commonName: "Bird's-nest Fern",
+            scientificName: "Asplenium nidus",
+            habitat: "Tropical forests, often growing on tree trunks",
+            distinguishingTrait: "Fronds form a nest-like rosette that catches fallen leaves.",
+            frondDescription: "Undivided, glossy, and arranged in a rosette",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Asplenium nidus" }),
+
+        () => new Fern(
+            id: "P006",
+            commonName: "Maidenhair Fern",
+            scientificName: "Adiantum capillus-veneris",
+            habitat: "Moist, shaded rocks, cliffs, and damp walls",
+            distinguishingTrait: "Thin dark stalks hold delicate fan-shaped leaflets.",
+            frondDescription: "Delicate, fan-shaped leaflets",
+            sources: new[] { "SUGGESTED: Plants of the World Online (Kew) - Adiantum capillus-veneris" }),
 
         () => new FloweringPlant(
             id: "P007",
